@@ -1,4 +1,4 @@
-package com.lins.oldmanphone;
+package com.lins.oldmanphone.ui;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.lins.oldmanphone.App;
+import com.lins.oldmanphone.R;
 import com.lins.oldmanphone.utils.DialogUtils;
 
 

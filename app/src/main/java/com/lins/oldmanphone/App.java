@@ -3,12 +3,17 @@ package com.lins.oldmanphone;
 import android.app.Application;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.database.sqlite.SQLiteDatabase;
 
+import com.lins.oldmanphone.gen.DaoMaster;
+import com.lins.oldmanphone.gen.DaoSession;
+import com.lins.oldmanphone.utils.GreenDaoManager;
 import com.lins.oldmanphone.utils.SharedData;
+import com.lins.oldmanphone.utils.UpgradeHelper;
+
 
 import java.util.HashMap;
 
-import cn.bmob.v3.Bmob;
 import cn.jpush.android.api.JPushInterface;
 
 /**
@@ -19,10 +24,13 @@ public class App extends Application{
     // 用来保存整个应用程序数据
     private static HashMap<String, Object> allData = new HashMap<String, Object>();
     private static Context mContext;
+    private DaoSession mDaoSession;
     @Override
     public void onCreate() {
         super.onCreate();
         mContext = this;
+        GreenDaoManager.getInstance();
+        initDaoSession();
 
 //        Bmob.initialize(this,"33e6d0b9cc101e2998dc0493a98e1b5d");
         JPushInterface.init(this);
@@ -72,7 +80,27 @@ public class App extends Application{
     }
 
 
+    /*
+         * GreenDao相关
+         */
+    public synchronized DaoSession getDaoSession() {
+        if (mDaoSession == null) {
+            initDaoSession();
+        }
+        return mDaoSession;
+    }
 
+    private void initDaoSession() {
+        // 相当于得到数据库帮助对象，用于便捷获取db
+        // 这里会自动执行upgrade的逻辑.backup all table→del all table→create all new table→restore data
+        UpgradeHelper helper = new UpgradeHelper(this, "note.db", null);
+        // 得到可写的数据库操作对象
+        SQLiteDatabase db = helper.getWritableDatabase();
+        // 获得Master实例,相当于给database包装工具
+        DaoMaster daoMaster = new DaoMaster(db);
+        // 获取类似于缓存管理器,提供各表的DAO类
+        mDaoSession = daoMaster.newSession();
+    }
 
 
 

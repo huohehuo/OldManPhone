@@ -10,7 +10,7 @@
 
         <include
             android:id="@+id/toolbar"
-            layout="@layout/top_bar" />
+            layout="@layout/main_top_bar" />
 
         <com.jude.easyrecyclerview.EasyRecyclerView
             android:id="@+id/ry_main"
@@ -25,12 +25,13 @@
             app:recyclerPaddingRight="8dp"
             app:recyclerPaddingTop="8dp"
             app:scrollbarStyle="insideOverlay"
-            app:scrollbars="none" />
+            app:scrollbars="none"
+            android:layout_above="@+id/iv_back" />
         <ImageView
-            android:id="@+id/iv_choose_addr"
+            android:id="@+id/iv_back"
+            android:background="@color/colorPrimary"
             android:layout_alignParentBottom="true"
-            android:layout_margin="15dp"
-            android:src="@drawable/eye"
+            android:src="@drawable/back"
             android:layout_width="60dp"
             android:layout_height="60dp" />
     </RelativeLayout>
