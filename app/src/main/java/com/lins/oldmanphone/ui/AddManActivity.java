@@ -26,8 +26,8 @@ public class AddManActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 MainBean mainBean = new MainBean();
-                mainBean.setName(binding.editText.getText().toString());
-                mainBean.setPhone(binding.editText2.getText().toString());
+                mainBean.setName(binding.etName.getText().toString());
+                mainBean.setPhone(binding.etPhone.getText().toString());
                 mainBeanManager.insert(mainBean);
             }
         });

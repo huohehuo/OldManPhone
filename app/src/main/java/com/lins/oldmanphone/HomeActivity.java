@@ -24,6 +24,7 @@ import com.lins.oldmanphone.databinding.ActivityHomeBinding;
 import com.lins.oldmanphone.gen.MainBeanDao;
 import com.lins.oldmanphone.ui.AddManActivity;
 import com.lins.oldmanphone.ui.BaseActivity;
+import com.lins.oldmanphone.ui.WebActivity;
 import com.lins.oldmanphone.utils.GreenDaoManager;
 
 import java.lang.reflect.Field;
@@ -82,25 +83,16 @@ public class HomeActivity extends BaseActivity {
             }
         });
 
-        binding.content.ivBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+
 
     }
 
     private void navClick() {
+        startActivityWith(WebActivity.class,binding.layoutNav.llAbout);
 //        startActivityWith(addActivity.class,binding.layoutNav.llAdd);
 //        startActivityWith(AccountActivity.class,binding.layoutNav.llMe);
 //        startActivityWith(EditUserInfoActivity.class,binding.layoutNav.ivNavHead);
-        binding.layoutNav.llAbout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-            }
-        });
         binding.drawerLayout.closeDrawer(GravityCompat.START);
     }
 

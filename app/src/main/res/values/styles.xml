@@ -20,10 +20,6 @@
 
     </style>
 
-    <style name="loading_dialog">
-
-    </style>
-
 
     <style name="AppTheme.Button.Transparent" parent="Widget.AppCompat.Button.Colored">
         <item name="colorButtonNormal">#4DDAFBF5</item>

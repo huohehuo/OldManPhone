@@ -3,9 +3,12 @@ package com.lins.oldmanphone.adapter;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.lins.oldmanphone.R;
@@ -27,28 +30,36 @@ public class MainAdapter extends RecyclerArrayAdapter<MainBean> {
     public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
         return new MainHolder(parent);
     }
+
     class MainHolder extends BaseViewHolder<MainBean> {
 
-        private TextView title,word;
+        private TextView name;
+        private ImageView imageView;
+
         public MainHolder(ViewGroup parent) {
             super(parent, R.layout.item_main);
-            title = $(R.id.tv_main_title);
-            word = $(R.id.tv_main_word);
+            name = $(R.id.tv_main_name);
+            imageView = $(R.id.iv_main_pic);
         }
-
 
 
         @Override
         public void setData(MainBean data) {
             super.setData(data);
-                title.setText(data.getName());
-                word.setText(data.getPhone());
+            name.setText(data.getName());
 
-//            Glide.with(getContext())
-//                    .load(data.getPic())
-//                    .placeholder(R.mipmap.ic_launcher)
-//                    .centerCrop()
-//                    .into(imageView);
+            if (data.getBgurl() != null) {
+                Log.e("asd","asdfasdf");
+                Glide.with(getContext())
+                        .load(data.getBgurl())
+                        .placeholder(R.drawable.camera)
+                        .centerCrop()
+                        .into(imageView);
+            }else{
+                Glide.with(getContext()).load(R.drawable.dog).into(imageView);
+                Log.e("asd","-------");
+            }
+
 
         }
     }
