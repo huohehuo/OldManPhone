@@ -37,7 +37,7 @@ android {
     }
 
     greendao {
-        schemaVersion 7
+        schemaVersion 2
         daoPackage 'com.lins.oldmanphone.gen'
         targetGenDir 'src/main/java'
     }

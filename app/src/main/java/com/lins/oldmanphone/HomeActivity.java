@@ -1,27 +1,25 @@
 package com.lins.oldmanphone;
 
 import android.app.Activity;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Point;
-import android.os.Handler;
-import android.os.Message;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v4.widget.ViewDragHelper;
-import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
-import android.view.KeyEvent;
-import android.view.View;
+import android.net.Uri;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.widget.Toast;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.ViewDragHelper;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.KeyEvent;
+import android.view.View;
 
-import com.bigkoo.pickerview.OptionsPickerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.lins.oldmanphone.DataUtils.MainBeanManager;
 import com.lins.oldmanphone.adapter.MainAdapter;
 import com.lins.oldmanphone.bean.MainBean;
 import com.lins.oldmanphone.databinding.ActivityHomeBinding;
-import com.lins.oldmanphone.gen.MainBeanDao;
 import com.lins.oldmanphone.ui.AddManActivity;
 import com.lins.oldmanphone.ui.BaseActivity;
 import com.lins.oldmanphone.ui.WebActivity;
@@ -32,7 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeActivity extends BaseActivity {
-
+    private static final int REQUEST_CODE = 0;//请求码
     ActivityHomeBinding binding;
     private MainAdapter mainAdapter;
     private MainBeanManager mainBeanManager;
@@ -45,7 +43,6 @@ public class HomeActivity extends BaseActivity {
 
         binding.content.ryMain.setAdapter(mainAdapter = new MainAdapter(HomeActivity.this));
         binding.content.ryMain.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-
 
     }
 
@@ -62,7 +59,38 @@ public class HomeActivity extends BaseActivity {
             @Override
             public void onItemClick(int position) {
                 MainBean mainBean = mainAdapter.getAllData().get(position);
-                updataList(mainBeanManager.delete(mainBean));
+                Uri uri=Uri.parse("tel:"+mainBean.getPhone());
+                Intent intent=new Intent();
+                intent.setAction(Intent.ACTION_DIAL);
+                intent.setData(uri);
+                HomeActivity.this.startActivity(intent);
+//                updataList(mainBeanManager.delete(mainBean));
+            }
+        });
+
+        mainAdapter.setOnItemLongClickListener(new RecyclerArrayAdapter.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(final int position) {
+                final MainBean mainBean = mainAdapter.getAllData().get(position);
+                final AlertDialog.Builder dialog =new AlertDialog.Builder(HomeActivity.this);
+                dialog.setTitle("提示")
+                        .setMessage("是否删除")
+                        .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                updataList(mainBeanManager.delete(mainBean));
+                            }
+                        })
+                        .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+//                            Toast.makeText(MainActivity.this, "继续使用", Toast.LENGTH_SHORT).show();
+//                                moveTaskToBack(true);
+                                dialogInterface.dismiss();
+                            }
+                        })
+                        .show();
+                return false;
             }
         });
 
@@ -76,6 +104,9 @@ public class HomeActivity extends BaseActivity {
                 }
             }
         });
+
+
+
         binding.content.toolbar.ivMainAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -134,8 +165,6 @@ public class HomeActivity extends BaseActivity {
         }
         mainAdapter.notifyDataSetChanged();
     }
-
-
     /**
      * 设置全屏滑动
      *

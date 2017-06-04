@@ -6,7 +6,7 @@
     <!-- 允许应用可以接收点亮屏幕或解锁广播。 -->
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-
+    <!--<uses-permission android:name="android.permission.CALL_PHONE"/>-->
     <!-- Required -->
     <uses-permission android:name="com.lins.oldmanphone.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
@@ -44,7 +44,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.AddManActivity" />
-
+        <activity android:name=".utils.permission.PermissionsActivity"/>
         <!-- Required SDK 核心功能 -->
         <!-- 可配置android:process参数将PushService放在其他进程中 -->
         <service
