@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
-<RelativeLayout
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_web"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.lins.oldmanphone.ui.WebActivity">
 
-    <com.lins.oldmanphone.widget.BrowserLayout
-        android:id="@+id/wv_mine"
+    <RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_web"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-</RelativeLayout>
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_main"
+        tools:context="com.lins.oldmanphone.ui.WebActivity">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/top_bar" />
+
+        <com.lins.oldmanphone.widget.BrowserLayout
+            android:id="@+id/wv_mine"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar" />
+    </RelativeLayout>
 </layout>

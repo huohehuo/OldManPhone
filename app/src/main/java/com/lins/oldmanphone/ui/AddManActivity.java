@@ -17,6 +17,8 @@ public class AddManActivity extends BaseActivity {
     @Override
     protected void initView() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_addman);
+        binding.toolbar.ivTopArrow.setImageResource(R.drawable.jpush_ic_richpush_actionbar_back);
+        binding.toolbar.tvTopLeft.setText("添加");
         mainBeanManager = new MainBeanManager();
     }
 

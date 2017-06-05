@@ -56,7 +56,7 @@ public class MainAdapter extends RecyclerArrayAdapter<MainBean> {
                         .centerCrop()
                         .into(imageView);
             }else{
-                Glide.with(getContext()).load(R.drawable.dog).into(imageView);
+                Glide.with(getContext()).load(R.drawable.bg_adapter).into(imageView);
                 Log.e("asd","-------");
             }
 

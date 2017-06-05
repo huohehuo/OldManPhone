@@ -16,6 +16,8 @@ public class Config {
     public static String ADDRESS_LIST = "address_list";
     public static String AT_ADDRESS="at_address";
 
+    public static String URL_ABOUT="http://lins.baiduux.com/h5/bulong.html";
+
     public static final String MAIN_RECEIVER_ACTION= "main_receiver_action";
 
     public static final String MAIN_SERVICE_ACTION = "main_service_action";
