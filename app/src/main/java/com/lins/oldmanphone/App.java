@@ -11,10 +11,7 @@ import com.lins.oldmanphone.utils.GreenDaoManager;
 import com.lins.oldmanphone.utils.SharedData;
 import com.lins.oldmanphone.utils.UpgradeHelper;
 
-
 import java.util.HashMap;
-
-import cn.jpush.android.api.JPushInterface;
 
 /**
  * Created by LINS on 2017/5/2.
@@ -33,7 +30,7 @@ public class App extends Application{
         initDaoSession();
 
 //        Bmob.initialize(this,"33e6d0b9cc101e2998dc0493a98e1b5d");
-        JPushInterface.init(this);
+//        JPushInterface.init(this);
 
     }
     public static Context getContext() {

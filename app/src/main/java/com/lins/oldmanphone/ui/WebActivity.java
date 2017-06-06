@@ -1,18 +1,10 @@
 package com.lins.oldmanphone.ui;
 
 import android.databinding.DataBindingUtil;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.webkit.WebChromeClient;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
 import com.lins.oldmanphone.Config;
 import com.lins.oldmanphone.R;
 import com.lins.oldmanphone.databinding.ActivityWebBinding;
-
-import static cn.jpush.android.api.b.j;
 
 public class WebActivity extends BaseActivity {
     ActivityWebBinding binding;
