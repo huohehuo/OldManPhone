@@ -13,6 +13,16 @@
         <include
             android:id="@+id/toolbar"
             layout="@layout/main_top_bar" />
+        <TextView
+            android:id="@+id/tv_nodata"
+            android:textSize="30sp"
+            android:background="@color/colorPrimary"
+            android:gravity="center_horizontal"
+            android:text="\n暂无号码\n存点进去吧~\n"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"/>
 
         <com.jude.easyrecyclerview.EasyRecyclerView
             android:id="@+id/ry_main"

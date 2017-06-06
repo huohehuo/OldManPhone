@@ -48,8 +48,8 @@
                             android:layout_height="match_parent"
                             android:ems="10"
                             android:hint="name"
+                            android:maxLength="4"
                             android:inputType="textPersonName"
-                            android:text="Name"
                             android:textColor="@color/bg"
                             android:textColorHint="#74bdea" />
                     </android.support.design.widget.TextInputLayout>
@@ -98,8 +98,8 @@
                             android:layout_height="match_parent"
                             android:ems="10"
                             android:hint="phone"
+                            android:maxLength="11"
                             android:inputType="number"
-                            android:text="10086"
                             android:textColor="@color/bg"
                             android:textColorHint="#74bdea" />
                     </android.support.design.widget.TextInputLayout>

@@ -1,7 +1,5 @@
 <resources>
-    <string name="app_name">OldManPhone</string>
-
-
+    <string name="app_name">老人拨号</string>
 
 
     <string name="permission">权限(permission)</string>

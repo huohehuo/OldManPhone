@@ -131,6 +131,11 @@ public class HomeActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         list = GreenDaoManager.getInstance().getSession().getMainBeanDao().queryBuilder().build().list();
+        if (list!=null&&list.size()!=0){
+            binding.content.tvNodata.setVisibility(View.GONE);
+        }else{
+            binding.content.tvNodata.setVisibility(View.VISIBLE);
+        }
         if (mainAdapter !=null){
             mainAdapter.clear();
             for (MainBean mb : list) {

@@ -3,6 +3,14 @@ apply plugin: 'org.greenrobot.greendao' // apply plugin
 
 
 android {
+    signingConfigs {
+        release {
+            keyAlias 'lins.keystore'
+            keyPassword 'linsworkspace'
+            storeFile file('../lins.keystore')
+            storePassword 'linsworkspace'
+        }
+    }
     compileSdkVersion 25
     buildToolsVersion "25.0.1"
     useLibrary 'org.apache.http.legacy'
@@ -13,38 +21,39 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
         ndk {
             //选择要添加的对应cpu类型的.so库。
             abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
             // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
         }
         manifestPlaceholders = [
-                JPUSH_PKGNAME : applicationId,
+                JPUSH_PKGNAME: applicationId,
                 JPUSH_APPKEY : "8b27037e3a164ffe30a657e4", //JPush上注册的包名对应的appkey.
-                JPUSH_CHANNEL : "developer-default", //用户渠道统计的渠道名称
+                JPUSH_CHANNEL: "developer-default", //用户渠道统计的渠道名称
         ]
-
         dataBinding {
             enabled = true
         }
+        signingConfig signingConfigs.release
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            zipAlignEnabled false
         }
     }
-
     greendao {
         schemaVersion 2
         daoPackage 'com.lins.oldmanphone.gen'
         targetGenDir 'src/main/java'
     }
+    productFlavors {
+    }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -60,21 +69,17 @@ dependencies {
     compile 'com.youth.banner:banner:1.4.4'
     //底部选择器
     compile 'com.bigkoo:pickerview:2.1.1'
-
-    compile 'cn.jiguang.sdk:jpush:3.0.5'  // 此处以JPush 3.0.5 版本为例。
-    compile 'cn.jiguang.sdk:jcore:1.1.2'  // 此处以JCore 1.1.2 版本为例。
-
-
+    compile 'cn.jiguang.sdk:jpush:3.0.5'
+    // 此处以JPush 3.0.5 版本为例。
+    compile 'cn.jiguang.sdk:jcore:1.1.2'
+    // 此处以JCore 1.1.2 版本为例。
     //bmob-sdk：Bmob的android sdk包，包含了Bmob的数据存储、文件等服务，以下是最新的bmob-sdk:
     //3.5.0：请务必查看下面注释[1]
     compile 'cn.bmob.android:bmob-sdk:3.5.0'
     //如果你想应用能够兼容Android6.0，请添加此依赖(org.apache.http.legacy.jar)
     compile 'cn.bmob.android:http-legacy:1.0'
-
-    compile'org.greenrobot:greendao:3.0.1'
-    compile'org.greenrobot:greendao-generator:3.0.0'
-
+    compile 'org.greenrobot:greendao:3.0.1'
+    compile 'org.greenrobot:greendao-generator:3.0.0'
     //图片平滑动态
     compile 'com.flaviofaria:kenburnsview:1.0.7'
-
 }

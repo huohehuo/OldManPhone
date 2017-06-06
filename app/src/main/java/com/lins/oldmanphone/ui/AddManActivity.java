@@ -24,13 +24,25 @@ public class AddManActivity extends BaseActivity {
 
     @Override
     protected void initEvent() {
+        closeActivity(binding.toolbar.ivTopArrow);
+
         binding.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if ("".equals(binding.etPhone.getText().toString())){
+                    showToast("请输入手机号码");
+                    return;
+                }
+                if ("".equals(binding.etName.getText().toString())){
+                    showToast("请输入称呼");
+                    return;
+                }
                 MainBean mainBean = new MainBean();
                 mainBean.setName(binding.etName.getText().toString());
                 mainBean.setPhone(binding.etPhone.getText().toString());
                 mainBeanManager.insert(mainBean);
+                showToast("添加成功");
+                finish();
             }
         });
     }
