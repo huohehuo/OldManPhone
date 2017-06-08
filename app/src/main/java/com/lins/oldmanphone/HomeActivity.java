@@ -22,6 +22,7 @@ import com.lins.oldmanphone.bean.MainBean;
 import com.lins.oldmanphone.databinding.ActivityHomeBinding;
 import com.lins.oldmanphone.ui.AddManActivity;
 import com.lins.oldmanphone.ui.BaseActivity;
+import com.lins.oldmanphone.ui.CallBtnActivity;
 import com.lins.oldmanphone.ui.WebActivity;
 import com.lins.oldmanphone.utils.GreenDaoManager;
 
@@ -97,11 +98,12 @@ public class HomeActivity extends BaseActivity {
         binding.content.toolbar.ivMainHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
-                    binding.drawerLayout.closeDrawer(GravityCompat.START);
-                } else {
-                    binding.drawerLayout.openDrawer(GravityCompat.START);
-                }
+                startActivity(CallBtnActivity.class);
+//                if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+//                    binding.drawerLayout.closeDrawer(GravityCompat.START);
+//                } else {
+//                    binding.drawerLayout.openDrawer(GravityCompat.START);
+//                }
             }
         });
 

@@ -16,7 +16,7 @@
                 android:id="@+id/iv_main_home"
                 android:layout_width="66dp"
                 android:layout_margin="10dp"
-                android:src="@drawable/home"
+                android:src="@drawable/phone"
                 android:layout_height="66dp" />
         </LinearLayout>
 
