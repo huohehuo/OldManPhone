@@ -1,15 +1,10 @@
 package com.lins.oldmanphone.widget;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.Uri;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.webkit.CookieManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -21,7 +16,7 @@ import android.widget.ProgressBar;
 import com.lins.oldmanphone.R;
 
 
-public class BrowserLayout extends LinearLayout {
+public class Browser2Layout extends LinearLayout {
 
     private Context mContext = null;
     private WebView mWebView = null;
@@ -36,12 +31,12 @@ public class BrowserLayout extends LinearLayout {
 
     private String mLoadUrl;
 
-    public BrowserLayout(Context context) {
+    public Browser2Layout(Context context) {
         super(context);
         init(context);
     }
 
-    public BrowserLayout(Context context, AttributeSet attrs) {
+    public Browser2Layout(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
@@ -101,53 +96,29 @@ public class BrowserLayout extends LinearLayout {
         });
 
 
-        mBrowserControllerView = LayoutInflater.from(context).inflate(R.layout.browser_controller, null);
-        mGoBackBtn = (ImageButton) mBrowserControllerView.findViewById(R.id.browser_controller_back);
-        mGoForwardBtn = (ImageButton) mBrowserControllerView.findViewById(R.id.browser_controller_forward);
-        mGoBrowserBtn = (ImageButton) mBrowserControllerView.findViewById(R.id.browser_controller_go);
-        mRefreshBtn = (ImageButton) mBrowserControllerView.findViewById(R.id.browser_controller_refresh);
 
-        mGoBackBtn.setOnClickListener(new OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                if (canGoBack()) {
-                    goBack();
-                }
-            }
-        });
+//        mRefreshBtn.setOnClickListener(new OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                loadUrl(mLoadUrl);
+//            }
+//        });
+//
+//        mGoBrowserBtn.setOnClickListener(new OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                if (!TextUtils.isEmpty(mLoadUrl)) {
+//                    Intent intent = new Intent(Intent.ACTION_VIEW);
+//                    intent.setData(Uri.parse(mLoadUrl));
+//                    mContext.startActivity(intent);
+//                }
+//            }
+//        });
 
-        mGoForwardBtn.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (canGoForward()) {
-                    goForward();
-                }
-            }
-        });
-
-        mRefreshBtn.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                loadUrl(mLoadUrl);
-            }
-        });
-
-        mGoBrowserBtn.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (!TextUtils.isEmpty(mLoadUrl)) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse(mLoadUrl));
-                    mContext.startActivity(intent);
-                }
-            }
-        });
-
-        addView(mBrowserControllerView, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+//        addView(mBrowserControllerView, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
     }
 
     private void syncCookie(Context context, String url) {
@@ -157,20 +128,22 @@ public class BrowserLayout extends LinearLayout {
         mWebView.loadUrl(url);
     }
 
+    //是否可以返回
     public boolean canGoBack() {
         return null != mWebView ? mWebView.canGoBack() : false;
     }
-
+    //是否可以前进
     public boolean canGoForward() {
         return null != mWebView ? mWebView.canGoForward() : false;
     }
 
+    //返回
     public void goBack() {
         if (null != mWebView) {
             mWebView.goBack();
         }
     }
-
+    //前进
     public void goForward() {
         if (null != mWebView) {
             mWebView.goForward();

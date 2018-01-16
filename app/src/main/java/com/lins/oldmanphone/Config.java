@@ -16,7 +16,7 @@ public class Config {
     public static String ADDRESS_LIST = "address_list";
     public static String AT_ADDRESS="at_address";
 
-    public static String URL_ABOUT="http://lins.baiduux.com/h5/oldman.html";
+    public static String URL_ABOUT="http://www.linspace.club/pages/phone/about2oldphone.html";
 
     public static final String MAIN_RECEIVER_ACTION= "main_receiver_action";
 
